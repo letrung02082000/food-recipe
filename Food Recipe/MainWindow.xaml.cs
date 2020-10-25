@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,31 @@ namespace Food_Recipe
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ListViewMenu.SelectedIndex;
+            TrainsitionigContentCursor.OnApplyTemplate();
+            MenuCursor.Margin = new Thickness(0, 100 + 60 * index, 0, 0);
+        }
+
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            HomeScreen homeScreen = new HomeScreen();
+            GridContent.Children.Add(homeScreen);
         }
     }
 }
