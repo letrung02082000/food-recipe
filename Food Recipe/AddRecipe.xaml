@@ -1,0 +1,151 @@
+﻿<Page x:Class="Food_Recipe.AddRecipe"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Food_Recipe"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="650"  d:DesignWidth="960"
+      Title="AddRecipe" Loaded="Page_Loaded">
+    <DockPanel Name="Addrecipe" LastChildFill="True">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Name="TopBar" Height="40" DockPanel.Dock="Top"  Background="{Binding ColorTopBar}">
+            <Button x:Name="ButtonBack" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF404040" Click="ButtonBack_Click" Panel.ZIndex="1">
+                <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25" Foreground="Black"/>
+            </Button>
+            <Label Content="New Recipes" Height="40" FontSize="18" VerticalContentAlignment="Center" HorizontalAlignment="Left" Foreground="Black"/>
+        </StackPanel>
+        <Grid>
+            
+            <Grid>
+                <TextBox Padding="5 0 10 0" Name="Title" Margin="40,35,638,548" 
+                         materialDesign:HintAssist.Hint="Title"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         BorderThickness="2" BorderBrush="Black"
+                         VerticalAlignment="Center" CaretBrush="Black" VerticalContentAlignment="Center" FontSize="12"/>
+                <TextBox Padding="5 0 10 0" Name="Description" Margin="40,67,638,344"  
+                         materialDesign:HintAssist.Hint="Description"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         BorderThickness="2" BorderBrush="Black"
+                         VerticalAlignment="Center" CaretBrush="Black" VerticalContentAlignment="Center" FontSize="12" Height="199"/>
+                <Border x:Name="ImageFood" Margin="40,272,638,108" 
+                        materialDesign:HintAssist.Hint="Image"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="2" BorderBrush="Black" Height="230"
+                        VerticalAlignment="Center">
+
+                    <Border.Background>
+                        <ImageBrush x:Name="imageFood" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"/>
+                    </Border.Background>
+                    <Button x:Name="ButtonUpload" Click="ButtonUpload_Click" Height="60" 
+                            VerticalAlignment="Bottom" Opacity="0.5"
+                            BorderBrush="Black" BorderThickness="0.5"
+                            Background="Gray" Foreground="White" FontSize="16" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="ImagePlus" PreviewMouseDoubleClick="ButtonUpload_Click" Width="30" Height="30" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" VerticalContentAlignment="Center"/>
+                            <Label Content="Click to upload Image Food" Foreground="Yellow" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <TextBox Padding="5 0 10 0" Name="StepDescription" Margin="339,35,339,0" 
+                         materialDesign:HintAssist.Hint="Step Description"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         BorderThickness="2" BorderBrush="Black"
+                         VerticalAlignment="Top" CaretBrush="Black" VerticalContentAlignment="Top" FontSize="12" Height="182"/>
+                <Border x:Name="ImageStep" Margin="638,35,40,393" 
+                        materialDesign:HintAssist.Hint="ImageStep"
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="2" BorderBrush="Black" Height="182"
+                        VerticalAlignment="Center"/>
+                <ListView Name="ImgStep" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              Margin="638,35,40,393">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Border CornerRadius="5,5,5,5" Width="148" Height="93" BorderThickness="1">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"></ImageBrush>
+                                    </Border.Background>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Name="AddimgStep" Click="AddimgStep_Click" Height="70" Width="110" Background="Gray" BorderBrush="Black" Opacity="0.8" VerticalContentAlignment="Center" Margin="641,147,219,393">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon PreviewMouseDoubleClick="AddimgStep_Click" Kind="ImagePlus" RenderOptions.BitmapScalingMode="HighQuality" Width="40" Height="40" Foreground="{Binding ColorTopBar}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Images Step" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Yellow" FontSize="14"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="AddStep" Click="AddStep_Click" Height="40" Margin="339,226,40,344" Background="Gray" BorderBrush="Black" Opacity="0.8" VerticalContentAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Add Step" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Yellow" FontSize="18"></TextBlock>
+                        <materialDesign:PackIcon Kind="Add" PreviewMouseDoubleClick="AddStep_Click" RenderOptions.BitmapScalingMode="HighQuality" Width="40" Height="40" Foreground="{Binding ColorTopBar}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Border Margin="339,272,40,40" BorderThickness="2" BorderBrush="Black">
+                </Border>
+                <ListView ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True" Name="DataListview" Margin="339,272,40,40">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding Step}" Foreground="DeepSkyBlue" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Text="{Binding StepDescrition}" Foreground="Black" FontSize="18" FontWeight="Bold"/>
+                                <ListView Margin="5 0 5 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding ImageStep}" >
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel></WrapPanel>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Border CornerRadius="10 10 10 10" Width="100" Height="100" BorderThickness="1">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="{Binding}" RenderOptions.BitmapScalingMode="HighQuality" Stretch="UniformToFill"></ImageBrush>
+                                                    </Border.Background>
+                                                </Border>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+            </Grid>
+            <Button x:Name="ButtonSave" Click="ButtonSave_Click" Height="40" Background="Gray" BorderBrush="Black" Opacity="0.8" VerticalContentAlignment="Bottom" Margin="40,530,639,40">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ContentSave" PreviewMouseDoubleClick="ButtonSave_Click" RenderOptions.BitmapScalingMode="HighQuality" Width="40" Height="40" Foreground="{Binding ColorTopBar}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Yellow" FontSize="18"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ButtonCancel" Click="ButtonCancel_Click" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ResourceKey=MaterialDesignFloatingActionAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Panel.ZIndex="1" Margin="908,-46,-78,0" >
+                <StackPanel Height="40" Width="40" Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="CloseBox" Background="White" Width="40" Height="40" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+
+        </Grid>
+    </DockPanel>
+</Page>
