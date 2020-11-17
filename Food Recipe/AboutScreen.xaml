@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Food_Recipe.AboutScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Food_Recipe"
+             mc:Ignorable="d" 
+             Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel>
+                <Label>Lời cảm ơn</Label>
+                <TextBlock>Giáo viên hướng dẫn: Trần Duy Quang</TextBlock>
+            </StackPanel>
+            
+        </Grid>
+
+        <Grid Grid.Row="1">
+            
+            <StackPanel>
+                <Label>Thành viên nhóm</Label>
+                <TextBlock>
+                    1. Lê Văn Trung
+                </TextBlock>
+                <TextBlock>
+                    2. Võ Đức Thắng
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,51 @@
+﻿<Window x:Class="Food_Recipe.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Food_Recipe"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Title="SplashScreen" Height="550" Width="410">
+
+    <Window.Resources>
+        <local:AbsoluteConverter x:Key="directoryConverter"/>
+    </Window.Resources>
+    <Border CornerRadius="25" Background="White" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="83*"/>
+                <RowDefinition Height="279*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="88*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Name}"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Image Source="{Binding Image, Converter={StaticResource directoryConverter}}"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked" IsChecked="True"/>
+                        <TextBlock Text="Hiện hộp thoại mỗi khi khởi động"/>
+                    </StackPanel>
+                    <Button Click="Cancel_Click" Content="Bỏ qua"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+
+</Window>
