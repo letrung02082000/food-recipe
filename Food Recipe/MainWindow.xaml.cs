@@ -85,8 +85,8 @@ namespace Food_Recipe
             ListViewMenu.SelectedIndex = 2;
             ChangeMenuPointer(2);
             GridContent.Children.Clear();
-            //AddRecipe addRecipe = new AddRecipe();
-            //Main.Children.Add(addRecipe);
+            AddRecipeScreen addRecipeScreen = new AddRecipeScreen();
+            GridContent.Children.Add(addRecipeScreen);
         }
 
         private void Todo_Click(object sender, RoutedEventArgs e)

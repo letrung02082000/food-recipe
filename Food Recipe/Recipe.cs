@@ -14,8 +14,8 @@ namespace Food_Recipe
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public string Step { get; set; }
-        public string StepDescription { get; set; }
+        //public string Step { get; set; }
+        //public string StepDescription { get; set; }
         public BindingList<StepImages> StepImages { get; set; }
         public string Video { get; set; }
         public bool Favorite { get; set; }

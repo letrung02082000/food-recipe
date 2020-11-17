@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Syncfusion.Windows.Shared;
+using Microsoft.Win32;
 
 namespace Food_Recipe
 {
@@ -28,12 +28,29 @@ namespace Food_Recipe
             stepLabel.Content = $"Bước {Index+1}";
             Carousel.DataContext = RecipeData.StepImages[0];
             foodItem.DataContext = RecipeData;
-            
+            //
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            var appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe";
+            using (var Key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", true))
+                Key.SetValue(appName, 99999, RegistryValueKind.DWord);
 
+            string videoID = "3_ZPHyMpWx0";
+            string html =
+                @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+                <html>
+                    <head>
+                        <title>YouTubePagesample</title>
+                        <meta http-equiv='X-UA-Compatible' content='IE=11'>
+                    </head>
+                    <iframe width='350' height='205' src='http://www.youtube.com/embed/{0}' frameborder='0' allowfullscreen></iframe>
+                    <body>
+                    </body>
+                </html>;";
+            this.webView.NavigateToString(string.Format(html, videoID));
         }
 
         private void BeforeBtn_Click(object sender, RoutedEventArgs e)
@@ -56,6 +73,11 @@ namespace Food_Recipe
 
             stepLabel.Content = $"Bước {Index + 1}";
             Carousel.DataContext = RecipeData.StepImages[Index];
+        }
+
+        private void PlayVideoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:WPF="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls.WebView"
              xmlns:local="clr-namespace:Food_Recipe"
              mc:Ignorable="d"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -20,18 +21,22 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="210*"/>
             <ColumnDefinition Width="314*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" x:Name="foodItem">
-            <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                           ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="184*"/>
+                <RowDefinition Height="141*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                           ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.RowSpan="2">
                 <Image Source="{Binding Image, Converter={StaticResource directoryConverter}}"/>
                 <Label Content="{Binding Name}"/>
                 <TextBlock TextWrapping="Wrap"  Text="{Binding Description}"/>
             </StackPanel>
-
+            <WebBrowser Grid.Row="1" x:Name="webView"/>
         </Grid>
 
         <Grid Grid.Column="1" x:Name="Carousel" >
@@ -72,23 +77,23 @@
                     <StackPanel>
                         <Label Name="stepLabel"/>
                         <TextBlock TextWrapping="Wrap" Text="{Binding StepContent}"/>
-                            <ItemsControl ItemsSource="{Binding StepImagesList}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Image Height="250" Width="250" Source="{Binding Path=., Converter={StaticResource directoryConverter}}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                        <ItemsControl ItemsSource="{Binding StepImagesList}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Height="250" Width="250" Source="{Binding Path=., Converter={StaticResource directoryConverter}}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
         </Grid>
 
     </Grid>
-    
+
 </UserControl>
