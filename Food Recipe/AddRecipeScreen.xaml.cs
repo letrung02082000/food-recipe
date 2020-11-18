@@ -73,7 +73,7 @@ namespace Food_Recipe
         {
             RecipeName = nameTextBox.Text.Trim();
             RecipeDescription = descriptionTextBox.Text.Trim();
-            VideoID = videoIdTextBox.Text.Trim();
+            VideoID = videoIdTextBox.Text.Trim().Split('=')[1];
 
             if(RecipeName == "" || RecipeDescription == "" || VideoID == "")
             {

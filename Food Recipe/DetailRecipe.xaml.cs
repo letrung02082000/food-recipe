@@ -38,7 +38,7 @@ namespace Food_Recipe
             using (var Key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", true))
                 Key.SetValue(appName, 99999, RegistryValueKind.DWord);
 
-            string videoID = "3_ZPHyMpWx0";
+            string videoID = RecipeData.Video;
             string html =
                 @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
                 <html>

@@ -335,6 +335,7 @@ namespace Food_Recipe
                 string description = recipeItem.Element("Description").Value;
                 string image = recipeItem.Element("Image").Value;
                 string favoriteString = recipeItem.Element("Favorite").Value;
+                string videoID = recipeItem.Element("VideoID").Value;
                 int favoriteInt = int.Parse(favoriteString);
                 bool favorite = favoriteInt == 1 ? true : false;
                 BindingList<StepImages> stepImages = new BindingList<StepImages>();
@@ -379,7 +380,9 @@ namespace Food_Recipe
                     Name = name,
                     Description = description,
                     Image = image,
-                    StepImages = stepImages
+                    StepImages = stepImages,
+                    Video = videoID
+                    
                 };
 
                 if (favorite)
