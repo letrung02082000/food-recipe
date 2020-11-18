@@ -73,15 +73,24 @@ namespace Food_Recipe
         {
             RecipeName = nameTextBox.Text.Trim();
             RecipeDescription = descriptionTextBox.Text.Trim();
-            VideoID = videoIdTextBox.Text.Trim().Split('=')[1];
 
-            if(RecipeName == "" || RecipeDescription == "" || VideoID == "")
+            if(RecipeName == "" || RecipeDescription == "" || CoverImage == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ các trường Tên, Mô tả, Video ID");
                 return;
             }
 
-            if(StepsList.Count == 0)
+            try
+            {
+                VideoID = videoIdTextBox.Text.Trim().Split('=')[1];
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng nhập đường dẫn video Youtube hợp lệ");
+                return;
+            }
+
+            if (StepsList.Count == 0)
             {
                 MessageBox.Show("Vui lòng điền đầy đủ các trường Mô tả bước, thêm hình ảnh và nhấn Thêm bước");
                 return;

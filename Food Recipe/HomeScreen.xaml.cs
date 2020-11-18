@@ -124,6 +124,15 @@ namespace Food_Recipe
         {
             recipes = new ObservableCollection<Recipe>();
 
+            if (!File.Exists("FoodRecipe.xml"))
+            {
+                return;
+            }
+            else
+            {
+                
+            }
+
             ReadDatabase(recipes);
 
             int itemNumber = recipes.Count;
@@ -167,6 +176,10 @@ namespace Food_Recipe
 
         private void Search(string textBoxValue)
         {
+            if (!File.Exists("FoodRecipe.xml"))
+            {
+                return;
+            }
             searchRecipes.Clear();
             OnSearch = true;
             textBoxValue = ConvertToUnSign(textBoxValue).ToLower();
@@ -290,12 +303,6 @@ namespace Food_Recipe
             return str2;
         }
 
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            string textBoxValue = (sender as TextBox).Text;
-            Search(textBoxValue);
-        }
-
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             string textBoxValue = (sender as TextBox).Text;
@@ -400,6 +407,12 @@ namespace Food_Recipe
 
                 DBrecipes.Add(recipe);
             }
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            string textBoxValue = (sender as TextBox).Text;
+            Search(textBoxValue);
         }
     }
 }

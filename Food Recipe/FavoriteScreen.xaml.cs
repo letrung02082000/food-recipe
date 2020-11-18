@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +34,16 @@ namespace Food_Recipe
         {
             recipes = new ObservableCollection<Recipe>();
             Recipe recipe;
+
+            //Check Database exists
+            if (!File.Exists("FoodRecipe.xml"))
+            {
+                return;
+            }
+            else
+            {
+
+            }
 
             // Read Recipes from XML file
             XDocument xDocument = XDocument.Load("FoodRecipe.xml");

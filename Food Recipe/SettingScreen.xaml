@@ -8,15 +8,20 @@
              Loaded="SettingScreen_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Label Width="250" Content="Số lượng công thức mỗi trang"/>
-                <TextBox Width="100" Name="PageItemTextBox"/>
+        <StackPanel Margin="10">
+            <Label FontSize="30" FontWeight="Bold">Cài đặt</Label>
+            <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Label FontWeight="Bold" FontSize="17" Width="250" Content="Số lượng công thức mỗi trang"/>
+                <TextBox Padding="2,0,2,0" Margin="10,0,10,0" BorderThickness="1" BorderBrush="LightGray" Width="100" Name="PageItemTextBox"/>
                 <Button x:Name="PageItemButton" Content="OK" Click="PageItemButton_Click"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Mở Splash Screen mỗi khi khởi động"/>
-                <CheckBox x:Name="SplashSetting" Checked="SplashSetting_Checked" Unchecked="SplashSetting_Unchecked"/>
+                <Label Margin="10" FontSize="17" FontWeight="Bold" Content="Mở Splash Screen mỗi khi khởi động"/>
+                <CheckBox x:Name="SplashSetting" Checked="SplashSetting_Checked" Unchecked="SplashSetting_Unchecked">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
             </StackPanel>
         </StackPanel>
             

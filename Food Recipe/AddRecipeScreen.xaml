@@ -21,33 +21,33 @@
             <ColumnDefinition Width="243*"/>
             <ColumnDefinition Width="323*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35*"/>
+                <RowDefinition Height="45*"/>
                 <RowDefinition Height="127*"/>
                 <RowDefinition Height="48*"/>
                 <RowDefinition Height="240*"/>
             </Grid.RowDefinitions>
-            <TextBox x:Name="nameTextBox" Grid.Row="0" materialDesign:HintAssist.Hint="Tên món ăn"/>
-            <TextBox x:Name="descriptionTextBox" Grid.Row="1" materialDesign:HintAssist.Hint="Mô tả món ăn"/>
-            <TextBox x:Name="videoIdTextBox" Grid.Row="2" materialDesign:HintAssist.Hint="Youtube Link"/>
+            <TextBox Margin="0,0,0,10" FontSize="15" Padding="5,0,5,0" TextWrapping="Wrap"  BorderThickness="2" BorderBrush="LightGray" x:Name="nameTextBox" Grid.Row="0" materialDesign:HintAssist.Hint="Tên món ăn"/>
+            <TextBox Margin="0,0,0,10" FontSize="15" Padding="5" TextWrapping="Wrap" BorderThickness="2" BorderBrush="LightGray" x:Name="descriptionTextBox" Grid.Row="1" materialDesign:HintAssist.Hint="Mô tả món ăn"/>
+            <TextBox Margin="0,0,0,10" FontSize="15" Padding="5,0,5,0" TextWrapping="Wrap" BorderThickness="2" BorderBrush="LightGray" x:Name="videoIdTextBox" Grid.Row="2" materialDesign:HintAssist.Hint="Liên kết video Youtube"/>
             <DockPanel LastChildFill="True" Grid.Row="3">
                 <Button Click="AddCover_Click" DockPanel.Dock="Bottom" Content="Chọn ảnh bìa" Margin="10,0,10,0"/>
-                <Image x:Name="coverImage"/>
+                <Image x:Name="coverImage" Margin="10"/>
             </DockPanel>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="110*"/>
                 <RowDefinition Height="283*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <TextBox x:Name="stepDescriptionTextBox" materialDesign:HintAssist.Hint="Mô tả bước"/>
+                <TextBox FontSize="15" Padding="5" TextWrapping="Wrap" BorderThickness="2" BorderBrush="LightGray" x:Name="stepDescriptionTextBox" materialDesign:HintAssist.Hint="Mô tả bước"/>
             </Grid>
             <DockPanel Grid.Row="2" LastChildFill="True">
-                <Label DockPanel.Dock="Top" HorizontalAlignment="Center" Content="Thêm ảnh"/>
+                <Label DockPanel.Dock="Top" Content="Thêm ảnh" Margin="0,10,0,0"/>
                 <Button Click="AddStepBtn_Click" DockPanel.Dock="Bottom" Content="Thêm bước" Margin="10,0,10,0"/>
-                <ScrollViewer>
+                <ScrollViewer Margin="0,0,0,10">
 
                     <WrapPanel Orientation="Horizontal">
                         <ItemsControl x:Name="stepImagesItemsControl">
@@ -58,22 +58,22 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding }" Width="250" Height="250"/>
+                                    <Image Source="{Binding }" Margin="0,0,0,10"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <Button Click="AddStepImage_Click" Width="50" Height="50">
+                        <Button Click="AddStepImage_Click" Width="50" Height="50" Margin="10">
                             <materialDesign:PackIcon Kind="Add"/>
                         </Button>
                     </WrapPanel>
                 </ScrollViewer>
             </DockPanel>
         </Grid>
-        <DockPanel LastChildFill="True" Grid.Column="2">
+        <DockPanel LastChildFill="True" Grid.Column="2" Margin="10">
 
-            <Button Click="SaveBtn_Click" DockPanel.Dock="Bottom" Content="Lưu lại" Margin="10,0,10,0"/>
-            <ScrollViewer>
-            <ItemsControl x:Name="stepsListItemsControl">
+            <Button Click="SaveBtn_Click" DockPanel.Dock="Bottom" Content="Lưu lại" Margin="15,0,15,0"/>
+            <ScrollViewer Margin="0,0,0,10">
+                <ItemsControl x:Name="stepsListItemsControl">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel/>
@@ -82,7 +82,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding StepContent}"/>
+                            <TextBlock FontSize="15" TextWrapping="Wrap" Text="{Binding StepContent}"/>
                                 <ItemsControl ItemsSource="{Binding StepImagesList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -91,7 +91,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Path=.}" Width="100" Height="100"/>
+                                        <Image Source="{Binding Path=.}" Width="150" Height="150" Margin="5"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

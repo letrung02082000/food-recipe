@@ -31,14 +31,13 @@
                 <RowDefinition Height="141*"/>
             </Grid.RowDefinitions>
             <ScrollViewer Grid.Row="0">
-                
                 <StackPanel>
-                    <Image Source="{Binding Image, Converter={StaticResource directoryConverter}}" Width="Auto" Height="210"/>
-                    <Label Content="{Binding Name}"/>
-                    <TextBlock TextWrapping="Wrap"  Text="{Binding Description}"/>
+                    <Image Source="{Binding Image, Converter={StaticResource directoryConverter}}" Width="Auto" Height="190"/>
+                    <Label Margin="5" FontSize="17" FontWeight="Bold" Content="{Binding Name}"/>
+                    <TextBlock Margin="5" FontSize="15" TextWrapping="Wrap"  Text="{Binding Description}"/>
                 </StackPanel>
             </ScrollViewer>
-            <WebBrowser Grid.Row="1" x:Name="webView"/>
+            <WebBrowser Grid.Row="1" x:Name="webView" HorizontalAlignment="Center"/>
         </Grid>
 
         <Grid Grid.Column="1" x:Name="Carousel" >
@@ -68,17 +67,17 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>-->
-            <DockPanel>
-                <Button DockPanel.Dock="Left" Click="BeforeBtn_Click">
+            <DockPanel Margin="10,0,10,0">
+                <Button Width="45" DockPanel.Dock="Left" Click="BeforeBtn_Click">
                     <materialDesign:PackIcon Kind="NavigateBefore"/>
                 </Button>
-                <Button DockPanel.Dock="Right" Click="NextBtn_Click">
+                <Button Width="45" DockPanel.Dock="Right" Click="NextBtn_Click">
                     <materialDesign:PackIcon Kind="NavigateNext"/>
                 </Button>
-                <ScrollViewer>
+                <ScrollViewer Margin="10">
                     <StackPanel>
-                        <Label Name="stepLabel"/>
-                        <TextBlock TextWrapping="Wrap" Text="{Binding StepContent}"/>
+                        <Label Margin="5" FontSize="17" Name="stepLabel"/>
+                        <TextBlock Margin="5" FontSize="17" TextWrapping="Wrap" Text="{Binding StepContent}"/>
                         <ItemsControl ItemsSource="{Binding StepImagesList}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -87,7 +86,7 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Height="250" Width="250" Source="{Binding Path=., Converter={StaticResource directoryConverter}}"/>
+                                    <Image Margin="5" Height="210" Width="210" Source="{Binding Path=., Converter={StaticResource directoryConverter}}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

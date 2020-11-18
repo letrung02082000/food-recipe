@@ -7,30 +7,13 @@
              mc:Ignorable="d" 
              Height="Auto" Width="Auto">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <StackPanel>
-                <Label>Lời cảm ơn</Label>
-                <TextBlock>Giáo viên hướng dẫn: Trần Duy Quang</TextBlock>
-            </StackPanel>
-            
-        </Grid>
-
-        <Grid Grid.Row="1">
-            
-            <StackPanel>
-                <Label>Thành viên nhóm</Label>
-                <TextBlock>
-                    1. Lê Văn Trung
-                </TextBlock>
-                <TextBlock>
-                    2. Võ Đức Thắng
-                </TextBlock>
-            </StackPanel>
-        </Grid>
+        <StackPanel Margin="35">
+            <Label FontSize="30" FontWeight="Bold">Lời cảm ơn</Label>
+            <TextBlock Margin="0,10,0,0" TextWrapping="Wrap" FontSize="21">Nhóm chúng em chân thành cảm ơn thầy Trần Duy Quang đã hướng dẫn chúng em thực hiện đồ án này.</TextBlock>
+            <TextBlock Height="50"/>
+            <Label FontSize="25">Thành viên nhóm</Label>
+            <TextBlock Margin="10" FontSize="17" TextWrapping="Wrap">Lê Văn Trung - MSSV: 18120622</TextBlock>
+            <TextBlock Margin="10" FontSize="17" TextWrapping="Wrap">Võ Đức Thắng - MSSV: 18120557</TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -198,9 +198,6 @@
     <None Include="StepImages\Chè Đậu Xanh Nấu Khoai Lang\step3-1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="FoodRecipe.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\img04.jpg">

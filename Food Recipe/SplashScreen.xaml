@@ -25,7 +25,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <Label VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Name}"/>
+                <Label Margin="10" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Name}"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -33,7 +33,7 @@
             </Grid>
 
             <Grid Grid.Row="2">
-                <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+                <TextBlock FontSize="17" Margin="10" TextWrapping="Wrap" Text="{Binding Description}"/>
             </Grid>
 
             <Grid Grid.Row="3">
