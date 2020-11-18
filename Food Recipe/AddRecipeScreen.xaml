@@ -13,6 +13,7 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
+             Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,7 +33,7 @@
             <TextBox x:Name="videoIdTextBox" Grid.Row="2" materialDesign:HintAssist.Hint="Youtube Link"/>
             <DockPanel LastChildFill="True" Grid.Row="3">
                 <Button Click="AddCover_Click" DockPanel.Dock="Bottom" Content="Chọn ảnh bìa" Margin="10,0,10,0"/>
-                <Image/>
+                <Image x:Name="coverImage"/>
             </DockPanel>
         </Grid>
         <Grid Grid.Column="1">
@@ -49,7 +50,7 @@
                 <ScrollViewer>
 
                     <WrapPanel Orientation="Horizontal">
-                        <ItemsControl>
+                        <ItemsControl x:Name="stepImagesItemsControl">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel/>
@@ -57,11 +58,11 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Image/>
+                                    <Image Source="{Binding }" Width="250" Height="250"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <Button Click="AddStepImage_Click">
+                        <Button Click="AddStepImage_Click" Width="50" Height="50">
                             <materialDesign:PackIcon Kind="Add"/>
                         </Button>
                     </WrapPanel>
@@ -72,7 +73,7 @@
 
             <Button Click="SaveBtn_Click" DockPanel.Dock="Bottom" Content="Lưu lại" Margin="10,0,10,0"/>
             <ScrollViewer>
-            <ItemsControl>
+            <ItemsControl x:Name="stepsListItemsControl">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel/>
@@ -82,7 +83,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock TextWrapping="Wrap" Text="{Binding StepContent}"/>
-                            <ItemsControl ItemsSource="{Binding StepImagesList}">
+                                <ItemsControl ItemsSource="{Binding StepImagesList}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel/>
@@ -90,7 +91,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Image Width="150" Height="150"/>
+                                        <Image Source="{Binding Path=.}" Width="100" Height="100"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

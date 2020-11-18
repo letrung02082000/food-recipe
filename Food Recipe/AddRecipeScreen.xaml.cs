@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using Microsoft.Win32;
 using System.IO;
+using System.Xml.Linq;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -44,6 +45,7 @@ namespace Food_Recipe
             {
                 string filePath = openFileDialog.FileName;
                 CoverImage = filePath;
+                coverImage.Source = new BitmapImage(new Uri(filePath, UriKind.Absolute));
             }
             else
             {
@@ -73,6 +75,18 @@ namespace Food_Recipe
             RecipeDescription = descriptionTextBox.Text.Trim();
             VideoID = videoIdTextBox.Text.Trim();
 
+            if(RecipeName == "" || RecipeDescription == "" || VideoID == "")
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ các trường Tên, Mô tả, Video ID");
+                return;
+            }
+
+            if(StepsList.Count == 0)
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ các trường Mô tả bước, thêm hình ảnh và nhấn Thêm bước");
+                return;
+            }
+
             //Save Cover Image
             if (!Directory.Exists("Images"))
             {
@@ -81,24 +95,65 @@ namespace Food_Recipe
 
             string folder = AppDomain.CurrentDomain.BaseDirectory;
             string coverImageFilePath = $"Images\\{Guid.NewGuid()}.{CoverImage.Split('.').Last()}";
+            XElement imageElement = new XElement("Image", coverImageFilePath);
             System.IO.File.Copy(CoverImage, $"{folder}\\{coverImageFilePath}", true);
 
             //Save Step Images
+            XElement stepsElement = new XElement("Steps");
             Directory.CreateDirectory($"StepImages\\{RecipeName}");
             foreach (StepImages step in StepsList)
             {
-                for(int i=0; i < step.StepImagesList.Count; ++i)
+                XElement stepElement = new XElement("Step");
+                XElement stepContent = new XElement("StepContent", step.StepContent);
+                stepElement.Add(stepContent);
+                XElement stepImages = new XElement("StepImages");
+
+                for (int i=0; i < step.StepImagesList.Count; ++i)
                 {
                     string stepImageFilePath = $"StepImages\\{RecipeName}\\{Guid.NewGuid()}.{step.StepImagesList[i].Split('.').Last()}";
                     File.Copy(step.StepImagesList[i], $"{folder}\\{stepImageFilePath}", true);
                     step.StepImagesList[i] = stepImageFilePath;
+                    //Save stepImages to XML database
+                    XElement stepImage = new XElement("StepImage", stepImageFilePath);
+                    stepImages.Add(stepImage);
                 }
+                stepElement.Add(stepImages);
+                stepsElement.Add(stepElement);
             }
+
+            XElement nameElement = new XElement("Name", RecipeName);
+            XElement descriptionElement = new XElement("Description", RecipeDescription);
+            XElement videoIDElement = new XElement("VideoID", VideoID);
+            XElement favoriteElement = new XElement("Favorite", "0");
+
+            XElement recipeElement = new XElement("Recipe", nameElement, descriptionElement, imageElement, videoIDElement, favoriteElement, stepsElement);
+
+            //Save to XML database
+            if (File.Exists("FoodRecipe.xml"))
+            {
+                XDocument xmlDoc = XDocument.Load("FoodRecipe.xml");
+                XElement recipesElement = xmlDoc.Root;
+                
+                recipesElement.Add(recipeElement);
+                xmlDoc.Save("FoodRecipe.xml");
+            }
+            else
+            {
+                XDocument xmlDoc = new XDocument(new XElement("Recipes", recipeElement));
+                xmlDoc.Save("FoodRecipe.xml");
+            }
+            MessageBox.Show("Lưu món ăn thành công!");
+            nameTextBox.Clear();
+            descriptionTextBox.Clear();
+            videoIdTextBox.Clear();
+            coverImage.Source = null;
+            StepsList.Clear();
+
         }
 
         private void AddStepBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (stepDescriptionTextBox.Text != null && ImagesList.Count > 0)
+            if (stepDescriptionTextBox.Text != "" && ImagesList.Count > 0)
             {
                 BindingList<string> newImagesList = new BindingList<string>();
                 
@@ -119,8 +174,14 @@ namespace Food_Recipe
             }
             else
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                MessageBox.Show("Vui lòng điền đầy đủ các trường Mô tả bước và thêm hình ảnh của bước rồi thử lại.");
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            stepImagesItemsControl.ItemsSource = ImagesList;
+            stepsListItemsControl.ItemsSource = StepsList;
         }
     }
 }

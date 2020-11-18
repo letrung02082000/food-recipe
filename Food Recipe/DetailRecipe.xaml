@@ -30,12 +30,14 @@
                 <RowDefinition Height="184*"/>
                 <RowDefinition Height="141*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                           ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.RowSpan="2">
-                <Image Source="{Binding Image, Converter={StaticResource directoryConverter}}"/>
-                <Label Content="{Binding Name}"/>
-                <TextBlock TextWrapping="Wrap"  Text="{Binding Description}"/>
-            </StackPanel>
+            <ScrollViewer Grid.Row="0">
+                
+                <StackPanel>
+                    <Image Source="{Binding Image, Converter={StaticResource directoryConverter}}" Width="Auto" Height="210"/>
+                    <Label Content="{Binding Name}"/>
+                    <TextBlock TextWrapping="Wrap"  Text="{Binding Description}"/>
+                </StackPanel>
+            </ScrollViewer>
             <WebBrowser Grid.Row="1" x:Name="webView"/>
         </Grid>
 
