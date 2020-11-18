@@ -33,7 +33,9 @@
             </Grid>
 
             <Grid Grid.Row="2">
-                <TextBlock FontSize="17" Margin="10" TextWrapping="Wrap" Text="{Binding Description}"/>
+                <ScrollViewer Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <TextBlock TextAlignment="Center" FontSize="13" TextWrapping="Wrap" Text="{Binding Description}"/>
+                </ScrollViewer>
             </Grid>
 
             <Grid Grid.Row="3">

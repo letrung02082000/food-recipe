@@ -74,7 +74,7 @@
                 <Button Width="45" DockPanel.Dock="Right" Click="NextBtn_Click">
                     <materialDesign:PackIcon Kind="NavigateNext"/>
                 </Button>
-                <ScrollViewer Margin="10">
+                <ScrollViewer Margin="10" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <Label Margin="5" FontSize="17" Name="stepLabel"/>
                         <TextBlock Margin="5" FontSize="17" TextWrapping="Wrap" Text="{Binding StepContent}"/>
